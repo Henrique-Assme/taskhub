@@ -18,4 +18,12 @@ FROM diz qual a imagem utilizar para o docker, nesse caso o Node.js versão 20. 
 
 Para a segunda etapa escolhi uma imagem menor e mais leve do node e instalamos no mesmo diretório as dependências, menos as de desenvolvimento. Tudo que foi preparado no builder é copiado para essa imagem final (código + node_modules)
 
-Rodamos o container com `docker compose up --build`. O servidor e banco de dados estão funcionando
+No docker-compose definimos o app e o banco de dados.
+
+Rodamos o container com `docker compose up --build`. O servidor e banco de dados estão funcionando.
+
+## Prisma
+
+Para utilizar o Priama ORM primeiro instalei as dependências prisma e @prisma/client. Depois iniciei o prisma com `npx prisma init` que cria o arquivo schema.prisma para definir os modelos e o .env para o DATABASE_URL.
+
+No arquivo .prisma criei um primeiro modelo user e rodei a migração para criar essa tabela no banco de dados com o comando `docker-compose exec app npx prisma migrate dev`. Depois de criada a migração, é necessário gerar o cliente prisma com o comando `npx prisma generate` e então podemos acessar o prisma nos códigos.

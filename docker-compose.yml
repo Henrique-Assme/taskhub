@@ -8,12 +8,10 @@ services:
       - /app/node_modules
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgres://user:password@db:5432/taskhub
     command: npx tsx src/server.ts
   
   db:
-    image: postgres:latest
+    image: postgres:17
     restart: always
     environment:
       POSTGRES_USER: postgres
